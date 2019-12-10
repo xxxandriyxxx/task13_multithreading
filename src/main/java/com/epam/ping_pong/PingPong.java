@@ -49,5 +49,5 @@ public class PingPong {
         }
         System.out.println("\n" + LocalDateTime.now());
     }
-    
+
 }
