@@ -1,6 +1,7 @@
 package com.epam;
 
 import com.epam.fibonacci.FibonacciCallable;
+import com.epam.fibonacci.FibonacciCallableSum;
 import com.epam.fibonacci.FibonacciRunnable;
 import com.epam.ping_pong.PingPong;
 
@@ -12,14 +13,12 @@ import static java.lang.Thread.MAX_PRIORITY;
 public class Application {
 
     public static void main(String[] args) {
-
-        playPingPong(10000);
-        runFibonacciByThread(10);
-        runFibonacciByExecutor(10);
-        runFibonacciCallable(20);
-
+//        playPingPong(10000);
+//        runFibonacciByThread(10);
+//        runFibonacciByExecutor(10);
+        runFibonacciCallable(10);
+        getFibonacciSum(10);
     }
-
 
     private static void playPingPong(int timesNumber) {
         PingPong pingPong = new PingPong();
@@ -68,5 +67,18 @@ public class Application {
             e.printStackTrace();
         }
     }
+
+    private static void getFibonacciSum(int size) {
+        try {
+            FibonacciCallableSum f = new FibonacciCallableSum(size);
+            ExecutorService executorService = Executors.newSingleThreadExecutor();
+            Future<Long> future = executorService.submit(f);
+            executorService.shutdown();
+            System.out.println("Sum of " + size + " Fibonacci numbers = " + future.get());
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
 
 }
