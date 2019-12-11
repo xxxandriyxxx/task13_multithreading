@@ -4,7 +4,9 @@ import com.epam.fibonacci.FibonacciCallable;
 import com.epam.fibonacci.FibonacciCallableSum;
 import com.epam.fibonacci.FibonacciRunnable;
 import com.epam.ping_pong.PingPong;
+import com.epam.schedule.MyRunnable;
 
+import java.time.LocalTime;
 import java.util.Arrays;
 import java.util.concurrent.*;
 
@@ -13,11 +15,12 @@ import static java.lang.Thread.MAX_PRIORITY;
 public class Application {
 
     public static void main(String[] args) {
-        playPingPong(10000);
-        runFibonacciByThread(10);
-        runFibonacciByExecutor(10);
-        runFibonacciCallable(10);
-        getFibonacciSum(10);
+//        playPingPong(10000);
+//        runFibonacciByThread(10);
+//        runFibonacciByExecutor(10);
+//        runFibonacciCallable(10);
+//        getFibonacciSum(10);
+        runScheduledTasks(3);
     }
 
     private static void playPingPong(int timesNumber) {
@@ -81,5 +84,18 @@ public class Application {
         }
     }
 
+    private static void runScheduledTasks(int amount) {
+        ScheduledExecutorService executor = Executors.newScheduledThreadPool(1);
+        int delayTime;
+        for (int i = 1; i <= amount; i++) {
+            MyRunnable task = new MyRunnable(i);
+            delayTime = 1 + (int) (Math.random() * 10);
+            System.out.println("Task " + i + " ---> time before delay: " + LocalTime.now());
+            ScheduledFuture<?> future = executor.schedule(task, delayTime, TimeUnit.SECONDS);
+            long remainingDelay = future.getDelay(TimeUnit.MILLISECONDS);
+            System.out.printf("Task " + i + " ---> remaining delay: %s ms\n", remainingDelay);
+        }
+        executor.shutdown();
+    }
 
 }
