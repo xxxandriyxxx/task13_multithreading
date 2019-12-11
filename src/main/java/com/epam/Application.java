@@ -20,7 +20,7 @@ public class Application {
 //        runFibonacciByExecutor(10);
 //        runFibonacciCallable(10);
 //        getFibonacciSum(10);
-        runScheduledTasks(3);
+        runScheduledTasks(5);
     }
 
     private static void playPingPong(int timesNumber) {
@@ -90,10 +90,10 @@ public class Application {
         for (int i = 1; i <= amount; i++) {
             MyRunnable task = new MyRunnable(i);
             delayTime = 1 + (int) (Math.random() * 10);
-            System.out.println("Task " + i + " ---> time before delay: " + LocalTime.now());
+            System.out.println("Task " + i + " --> time before delay: " + LocalTime.now());
             ScheduledFuture<?> future = executor.schedule(task, delayTime, TimeUnit.SECONDS);
             long remainingDelay = future.getDelay(TimeUnit.MILLISECONDS);
-            System.out.printf("Task " + i + " ---> remaining delay: %s ms\n", remainingDelay);
+            System.out.printf("Task " + i + " --> remaining delay: %s ms\n", remainingDelay);
         }
         executor.shutdown();
     }

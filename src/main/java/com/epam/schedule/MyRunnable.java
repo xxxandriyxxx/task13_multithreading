@@ -12,6 +12,6 @@ public class MyRunnable implements Runnable {
 
     @Override
     public void run() {
-        System.out.println("Task " + taskNumber + " ---> time of starting:  " + LocalTime.now());
+        System.out.println("Task " + taskNumber + " ---> time of starting: " + LocalTime.now());
     }
 }
