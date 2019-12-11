@@ -4,7 +4,7 @@ import com.epam.fibonacci.FibonacciCallable;
 import com.epam.fibonacci.FibonacciRunnable;
 import com.epam.ping_pong.PingPong;
 
-
+import java.util.Arrays;
 import java.util.concurrent.*;
 
 import static java.lang.Thread.MAX_PRIORITY;
@@ -16,7 +16,7 @@ public class Application {
         playPingPong(10000);
         runFibonacciByThread(10);
         runFibonacciByExecutor(10);
-
+        runFibonacciCallable(20);
 
     }
 
@@ -57,5 +57,16 @@ public class Application {
         }
     }
 
+    private static void runFibonacciCallable(int size) {
+        try {
+            FibonacciCallable f = new FibonacciCallable(size);
+            ExecutorService executorService = Executors.newSingleThreadExecutor();
+            Future<Long[]> future = executorService.submit(f);
+            executorService.shutdown();
+            System.out.println("item :" + Arrays.toString(future.get()));
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
 
 }
