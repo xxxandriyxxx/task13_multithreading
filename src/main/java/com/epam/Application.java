@@ -13,9 +13,9 @@ import static java.lang.Thread.MAX_PRIORITY;
 public class Application {
 
     public static void main(String[] args) {
-//        playPingPong(10000);
-//        runFibonacciByThread(10);
-//        runFibonacciByExecutor(10);
+        playPingPong(10000);
+        runFibonacciByThread(10);
+        runFibonacciByExecutor(10);
         runFibonacciCallable(10);
         getFibonacciSum(10);
     }
@@ -26,7 +26,7 @@ public class Application {
     }
 
     private static void runFibonacciByThread(int size) {
-        System.out.println("Fibonacci sequence of " + size + " numbers:");
+        System.out.println("Fibonacci sequence of " + size + " numbers (used Thread):");
         try {
             for (int i = 0; i < size; i++) {
                 FibonacciRunnable f = new FibonacciRunnable(i);
@@ -41,7 +41,7 @@ public class Application {
     }
 
     private static void runFibonacciByExecutor(int size) {
-        System.out.println("Fibonacci sequence of " + size + " numbers:");
+        System.out.println("Fibonacci sequence of " + size + " numbers (used Executor):");
         try {
             for (int i = 0; i < size; i++) {
                 FibonacciRunnable f = new FibonacciRunnable(i);
@@ -62,7 +62,8 @@ public class Application {
             ExecutorService executorService = Executors.newSingleThreadExecutor();
             Future<Long[]> future = executorService.submit(f);
             executorService.shutdown();
-            System.out.println("item :" + Arrays.toString(future.get()));
+            System.out.println("Fibonacci sequence of " + size + " numbers (used Callable):\n"
+                    + Arrays.toString(future.get()));
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -74,7 +75,7 @@ public class Application {
             ExecutorService executorService = Executors.newSingleThreadExecutor();
             Future<Long> future = executorService.submit(f);
             executorService.shutdown();
-            System.out.println("Sum of " + size + " Fibonacci numbers = " + future.get());
+            System.out.println("Sum of " + size + " Fibonacci numbers (used Callable) = " + future.get());
         } catch (Exception e) {
             e.printStackTrace();
         }
