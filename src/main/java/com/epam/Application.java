@@ -1,5 +1,6 @@
 package com.epam;
 
+import com.epam.lock.LockClass;
 import com.epam.sync.SyncClass;
 import com.epam.fibonacci.FibonacciCallable;
 import com.epam.fibonacci.FibonacciCallableSum;
@@ -23,9 +24,13 @@ public class Application {
 //        getFibonacciSum(10);
 //        runScheduledTasks(5);
 
-        runSync(true);
+//        runSync(true);
+//        System.out.println("----------------");
+//        runSync(false);
+
+        runLock(true);
         System.out.println("----------------");
-        runSync(false);
+        runLock(false);
     }
 
     private static void playPingPong(int timesNumber) {
@@ -117,6 +122,22 @@ public class Application {
             thread1.join();
             thread2.join();
             thread3.join();
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+    }
+
+    private static void runLock(boolean lockBySameObj) {
+        LockClass lockClass1 = new LockClass(lockBySameObj);
+        LockClass lockClass2 = new LockClass(lockBySameObj);
+        LockClass lockClass3 = new LockClass(lockBySameObj);
+        lockClass1.start();
+        lockClass2.start();
+        lockClass3.start();
+        try {
+            lockClass1.join();
+            lockClass2.join();
+            lockClass3.join();
         } catch (InterruptedException e) {
             e.printStackTrace();
         }
