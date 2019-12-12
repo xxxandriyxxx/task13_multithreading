@@ -1,4 +1,4 @@
-### Task
+### Task 1
 
 1. Write simple “ping-pong” program using wait() and notify().
 
@@ -21,3 +21,9 @@ can run at a time. Now modify the methods so that each one synchronizes on a dif
 object and show that all three methods can be running at once.
 
 7. Write program in which two tasks use a pipe to communicate.
+
+### Task 2
+
+1. Modify exercise 6 from previous presentation to use explicit Lock objects.
+2. Modify exercise 7 from previous presentation to use a BlockingQueue instead of a pipe.
+3. Create your own ReadWriteLock (or at least simple Lock).
