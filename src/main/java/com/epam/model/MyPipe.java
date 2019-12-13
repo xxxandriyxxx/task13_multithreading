@@ -44,5 +44,11 @@ public class MyPipe {
 
         thread.start();
         thread2.start();
+        try {
+            thread.join();
+            thread2.join();
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
     }
 }
