@@ -1,4 +1,4 @@
-package com.epam.pipe;
+package com.epam.model;
 
 import java.io.IOException;
 import java.io.PipedInputStream;

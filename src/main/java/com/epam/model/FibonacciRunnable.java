@@ -1,4 +1,4 @@
-package com.epam.fibonacci;
+package com.epam.model;
 
 public class FibonacciRunnable implements Runnable {
 

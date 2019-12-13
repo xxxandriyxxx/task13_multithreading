@@ -1,4 +1,4 @@
-package com.epam.schedule;
+package com.epam.model;
 
 import java.time.LocalTime;
 

@@ -1,4 +1,4 @@
-package com.epam.sync;
+package com.epam.model;
 
 public class SyncClass implements Runnable {
 

@@ -1,13 +1,13 @@
 package com.epam;
 
-import com.epam.lock.LockClass;
-import com.epam.pipe.MyPipe;
-import com.epam.sync.SyncClass;
-import com.epam.fibonacci.FibonacciCallable;
-import com.epam.fibonacci.FibonacciCallableSum;
-import com.epam.fibonacci.FibonacciRunnable;
-import com.epam.ping_pong.PingPong;
-import com.epam.schedule.MyRunnable;
+import com.epam.model.LockClass;
+import com.epam.model.MyPipe;
+import com.epam.model.SyncClass;
+import com.epam.model.FibonacciCallable;
+import com.epam.model.FibonacciCallableSum;
+import com.epam.model.FibonacciRunnable;
+import com.epam.model.PingPong;
+import com.epam.model.MyRunnable;
 
 import java.time.LocalTime;
 import java.util.Arrays;

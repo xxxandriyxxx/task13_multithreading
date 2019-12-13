@@ -1,4 +1,4 @@
-package com.epam.fibonacci;
+package com.epam.model;
 
 import java.util.concurrent.Callable;
 

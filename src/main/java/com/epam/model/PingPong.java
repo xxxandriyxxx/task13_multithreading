@@ -1,4 +1,4 @@
-package com.epam.ping_pong;
+package com.epam.model;
 
 import java.time.LocalDateTime;
 
