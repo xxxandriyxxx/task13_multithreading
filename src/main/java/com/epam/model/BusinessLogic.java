@@ -8,11 +8,13 @@ import static java.lang.Thread.MAX_PRIORITY;
 
 public class BusinessLogic implements Model {
 
+    @Override
     public void playPingPong(int timesNumber) {
         PingPong pingPong = new PingPong();
         pingPong.show(timesNumber);
     }
 
+    @Override
     public void runFibonacciByThread(int size) {
         System.out.println("Fibonacci sequence of " + size + " numbers (used Thread):");
         try {
@@ -28,6 +30,7 @@ public class BusinessLogic implements Model {
         }
     }
 
+    @Override
     public void runFibonacciByExecutor(int size) {
         System.out.println("Fibonacci sequence of " + size + " numbers (used Executor):");
         try {
@@ -44,6 +47,7 @@ public class BusinessLogic implements Model {
         }
     }
 
+    @Override
     public void runFibonacciCallable(int size) {
         try {
             FibonacciCallable f = new FibonacciCallable(size);
@@ -57,6 +61,7 @@ public class BusinessLogic implements Model {
         }
     }
 
+    @Override
     public void getSumFibonacci(int size) {
         try {
             FibonacciCallableSum f = new FibonacciCallableSum(size);
@@ -69,6 +74,7 @@ public class BusinessLogic implements Model {
         }
     }
 
+    @Override
     public void runScheduledTasks(int amount) {
         ScheduledExecutorService executor = Executors.newScheduledThreadPool(1);
         int delayTime;
@@ -83,6 +89,7 @@ public class BusinessLogic implements Model {
         executor.shutdown();
     }
 
+    @Override
     public void runSync(boolean syncBySameObj) {
         SyncClass syncClass1 = new SyncClass(syncBySameObj);
         SyncClass syncClass2 = new SyncClass(syncBySameObj);
@@ -102,6 +109,7 @@ public class BusinessLogic implements Model {
         }
     }
 
+    @Override
     public void runLock(boolean lockBySameObj) {
         LockClass lockClass1 = new LockClass(lockBySameObj);
         LockClass lockClass2 = new LockClass(lockBySameObj);
@@ -118,10 +126,12 @@ public class BusinessLogic implements Model {
         }
     }
 
+    @Override
     public void runPipe() {
         MyPipe.show();
     }
 
+    @Override
     public void runBlockingQueue() {
         MyBlockingQueue.show();
     }
