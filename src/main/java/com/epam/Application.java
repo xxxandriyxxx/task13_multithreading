@@ -1,7 +1,7 @@
 package com.epam;
 
 import com.epam.lock.LockClass;
-import com.epam.queue.MyBlockingQueue;
+import com.epam.pipe.MyPipe;
 import com.epam.sync.SyncClass;
 import com.epam.fibonacci.FibonacciCallable;
 import com.epam.fibonacci.FibonacciCallableSum;
@@ -33,7 +33,9 @@ public class Application {
 //        System.out.println("----------------");
 //        runLock(false);
 
-        MyBlockingQueue.show();
+//        MyBlockingQueue.show();
+
+        MyPipe.show();
     }
 
     private static void playPingPong(int timesNumber) {
