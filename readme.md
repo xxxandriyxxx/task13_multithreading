@@ -25,5 +25,7 @@ object and show that all three methods can be running at once.
 ### Task 2
 
 1. Modify exercise 6 from previous presentation to use explicit Lock objects.
+
 2. Modify exercise 7 from previous presentation to use a BlockingQueue instead of a pipe.
-3. Create your own ReadWriteLock (or at least simple Lock).
+
+3. ###### (in process) Create your own ReadWriteLock (or at least simple Lock).
