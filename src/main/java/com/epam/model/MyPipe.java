@@ -1,10 +1,16 @@
 package com.epam.model;
 
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
+
 import java.io.IOException;
 import java.io.PipedInputStream;
 import java.io.PipedOutputStream;
+import java.util.Arrays;
 
 public class MyPipe {
+
+    private static Logger logger = LogManager.getLogger(MyPipe.class);
 
     public static void show() {
         PipedInputStream pis = new PipedInputStream();
@@ -12,7 +18,7 @@ public class MyPipe {
         try {
             pos.connect(pis);
         } catch (IOException e) {
-            e.printStackTrace();
+            logger.error(Arrays.toString(e.getStackTrace()));
         }
 
         Thread thread = new Thread(() -> {
@@ -25,7 +31,7 @@ public class MyPipe {
                 }
                 pos.close();
             } catch (Exception e) {
-                e.printStackTrace();
+                logger.error(Arrays.toString(e.getStackTrace()));
             }
 
         }, "Thead-1");
@@ -38,7 +44,7 @@ public class MyPipe {
                 }
                 pis.close();
             } catch (Exception e) {
-                e.printStackTrace();
+                logger.error(Arrays.toString(e.getStackTrace()));
             }
         }, "Thead-2");
 
@@ -48,7 +54,7 @@ public class MyPipe {
             thread.join();
             thread2.join();
         } catch (InterruptedException e) {
-            e.printStackTrace();
+            logger.error(Arrays.toString(e.getStackTrace()));
         }
     }
 }

@@ -1,9 +1,15 @@
 package com.epam.model;
 
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
+
+import java.util.Arrays;
 import java.util.concurrent.ArrayBlockingQueue;
 import java.util.concurrent.BlockingQueue;
 
 public class MyBlockingQueue {
+
+    private static Logger logger = LogManager.getLogger(MyBlockingQueue.class);
 
     public static void show() {
         BlockingQueue<Integer> queue = new ArrayBlockingQueue<>(5);
@@ -13,12 +19,12 @@ public class MyBlockingQueue {
                 try {
                     Thread.sleep(500);
                 } catch (Exception e) {
-                    e.printStackTrace();
+                    logger.error(Arrays.toString(e.getStackTrace()));
                 }
                 try {
                     queue.put(i);
                 } catch (Exception e) {
-                    e.printStackTrace();
+                    logger.error(Arrays.toString(e.getStackTrace()));
                 }
                 System.out.println(Thread.currentThread().getName() + " --> add --> " + i);
             }
@@ -30,12 +36,12 @@ public class MyBlockingQueue {
                 try {
                     Thread.sleep(3000);
                 } catch (Exception e) {
-                    e.printStackTrace();
+                    logger.error(Arrays.toString(e.getStackTrace()));
                 }
                 try {
                     value = queue.take();
                 } catch (Exception e) {
-                    e.printStackTrace();
+                    logger.error(Arrays.toString(e.getStackTrace()));
                 }
                 System.out.println(Thread.currentThread().getName() + " --> take --> " + value);
             }
@@ -47,7 +53,7 @@ public class MyBlockingQueue {
             thread.join();
             thread2.join();
         } catch (InterruptedException e) {
-            e.printStackTrace();
+            logger.error(Arrays.toString(e.getStackTrace()));
         }
     }
 }

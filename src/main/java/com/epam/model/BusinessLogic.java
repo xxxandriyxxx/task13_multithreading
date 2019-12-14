@@ -1,5 +1,8 @@
 package com.epam.model;
 
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
+
 import java.time.LocalTime;
 import java.util.Arrays;
 import java.util.concurrent.*;
@@ -7,6 +10,8 @@ import java.util.concurrent.*;
 import static java.lang.Thread.MAX_PRIORITY;
 
 public class BusinessLogic implements Model {
+
+    private static Logger logger = LogManager.getLogger(BusinessLogic.class);
 
     @Override
     public void playPingPong(int timesNumber) {
@@ -26,7 +31,7 @@ public class BusinessLogic implements Model {
                 System.out.println("num" + (i + 1) + " = " + f.number);
             }
         } catch (Exception e) {
-            e.printStackTrace();
+            logger.error(Arrays.toString(e.getStackTrace()));
         }
     }
 
@@ -43,7 +48,7 @@ public class BusinessLogic implements Model {
                 System.out.println("num" + (i + 1) + " = " + f.number);
             }
         } catch (Exception e) {
-            e.printStackTrace();
+            logger.error(Arrays.toString(e.getStackTrace()));
         }
     }
 
@@ -57,7 +62,7 @@ public class BusinessLogic implements Model {
             System.out.println("Fibonacci sequence of " + size + " numbers (used Callable):\n"
                     + Arrays.toString(future.get()));
         } catch (Exception e) {
-            e.printStackTrace();
+            logger.error(Arrays.toString(e.getStackTrace()));
         }
     }
 
@@ -70,7 +75,7 @@ public class BusinessLogic implements Model {
             executorService.shutdown();
             System.out.println("Sum of " + size + " Fibonacci numbers (used Callable) = " + future.get());
         } catch (Exception e) {
-            e.printStackTrace();
+            logger.error(Arrays.toString(e.getStackTrace()));
         }
     }
 
@@ -105,7 +110,7 @@ public class BusinessLogic implements Model {
             thread2.join();
             thread3.join();
         } catch (InterruptedException e) {
-            e.printStackTrace();
+            logger.error(Arrays.toString(e.getStackTrace()));
         }
     }
 
@@ -122,7 +127,7 @@ public class BusinessLogic implements Model {
             lockClass2.join();
             lockClass3.join();
         } catch (InterruptedException e) {
-            e.printStackTrace();
+            logger.error(Arrays.toString(e.getStackTrace()));
         }
     }
 

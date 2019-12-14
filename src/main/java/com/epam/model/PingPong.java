@@ -1,9 +1,14 @@
 package com.epam.model;
 
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
+
 import java.time.LocalDateTime;
+import java.util.Arrays;
 
 public class PingPong {
 
+    private static Logger logger = LogManager.getLogger(PingPong.class);
     private volatile static long A = 0;
     // Shared Resource
     private static Object sync = new Object();
@@ -16,6 +21,7 @@ public class PingPong {
                     try {
                         sync.wait();
                     } catch (InterruptedException e) {
+                        logger.error(Arrays.toString(e.getStackTrace()));
                     }
                     A++;
                     System.out.println("\n" + A + ": " + Thread.currentThread().getName() + " ---> pIng");
@@ -31,6 +37,7 @@ public class PingPong {
                     try {
                         sync.wait();
                     } catch (InterruptedException e) {
+                        logger.error(Arrays.toString(e.getStackTrace()));
                     }
                     A++;
                     System.out.println("\n" + A + ": " + Thread.currentThread().getName() + " ---> pOng");
@@ -46,6 +53,7 @@ public class PingPong {
             t1.join();
             t2.join();
         } catch (InterruptedException e) {
+            logger.error(Arrays.toString(e.getStackTrace()));
         }
         System.out.println("\n" + LocalDateTime.now());
     }

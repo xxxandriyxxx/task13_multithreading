@@ -1,6 +1,13 @@
 package com.epam.model;
 
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
+
+import java.util.Arrays;
+
 public class FibonacciRunnable implements Runnable {
+
+    private static Logger logger = LogManager.getLogger(FibonacciRunnable.class);
 
     private int x;
     public long number;
@@ -10,7 +17,6 @@ public class FibonacciRunnable implements Runnable {
     }
 
     public void run() {
-
         if (x == 0) {
             number = 0;
         } else if (x == 1)
@@ -26,7 +32,8 @@ public class FibonacciRunnable implements Runnable {
                 thread1.join();
                 thread2.join();
                 number = f1.number + f2.number;
-            } catch (InterruptedException ex) {
+            } catch (InterruptedException e) {
+                logger.error(Arrays.toString(e.getStackTrace()));
             }
         }
     }
